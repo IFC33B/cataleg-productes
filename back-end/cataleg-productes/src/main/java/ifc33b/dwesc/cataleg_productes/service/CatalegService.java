@@ -6,7 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ifc33b.dwesc.cataleg_productes.dto.ProducteRequest;
 import ifc33b.dwesc.cataleg_productes.dto.ProducteResponse;
+import ifc33b.dwesc.cataleg_productes.model.Producte;
 import ifc33b.dwesc.cataleg_productes.repository.ProducteRepository;
 
 @Service
@@ -19,5 +21,12 @@ public class CatalegService {
         return producteRepository.findAll().stream()
             .map(ProducteResponse::new)
             .collect(Collectors.toList());
+    }
+
+    // Crear un producto
+    public ProducteResponse createProducte(ProducteRequest request) {
+        Producte producte = new Producte(request.getNom(), request.getPreu(), request.getImatgeUrl(), request.getStock());
+        producteRepository.save(producte);
+        return new ProducteResponse(producte);
     }
 }

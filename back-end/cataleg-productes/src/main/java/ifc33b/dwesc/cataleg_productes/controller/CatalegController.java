@@ -3,11 +3,13 @@ package ifc33b.dwesc.cataleg_productes.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ifc33b.dwesc.cataleg_productes.dto.ProducteRequest;
 import ifc33b.dwesc.cataleg_productes.dto.ProducteResponse;
 import ifc33b.dwesc.cataleg_productes.service.CatalegService;
 
@@ -39,7 +41,11 @@ public class CatalegController {
     }
     
     @PostMapping() // Añadir un producte
-    public int createProducte(@RequestBody String entity) { 
-        return 0;
+    public ResponseEntity<ProducteResponse> createProducte(@RequestBody ProducteRequest request) { 
+        // Service
+        ProducteResponse response = catalegService.createProducte(request);
+
+        // HTTP Response
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

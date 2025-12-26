@@ -19,13 +19,20 @@ public class CatalegService {
     // Devolver todos los productos
     public List<ProducteResponse> getAllProductes() {
         return producteRepository.findAll().stream()
-            .map(ProducteResponse::new)
-            .collect(Collectors.toList());
+                .map(ProducteResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProducteResponse> getProducteBetweenPrices(Double minPreu, Double maxPreu) {
+        return producteRepository.filtrarPerPreu(minPreu, maxPreu).stream()
+                .map(ProducteResponse::new)
+                .collect(Collectors.toList());
     }
 
     // Crear un producto
     public ProducteResponse createProducte(ProducteRequest request) {
-        Producte producte = new Producte(request.getNom(), request.getPreu(), request.getImatgeUrl(), request.getStock());
+        Producte producte = new Producte(request.getNom(), request.getPreu(), request.getImatgeUrl(),
+                request.getStock());
         producteRepository.save(producte);
         return new ProducteResponse(producte);
     }

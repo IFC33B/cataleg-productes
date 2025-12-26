@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ifc33b.dwesc.cataleg_productes.dto.ProducteRequest;
@@ -26,19 +27,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class CatalegController {
     @Autowired
     private CatalegService catalegService;
-
-    @GetMapping() // Devuelve todos los productes
-    public ResponseEntity<List<ProducteResponse>> getAllProductes() {
+    
+    @GetMapping() // Devolver los productos, con posibilidad de filtro de precios
+    public ResponseEntity<List<ProducteResponse>> getAllProductes(@RequestParam(required = false) Double minPreu, Double maxPreu) {
         // Service
-        List<ProducteResponse> response = catalegService.getAllProductes();
+        List<ProducteResponse> response = catalegService.getAllProductes(maxPreu, minPreu);
 
         // HTTP Response
         return ResponseEntity.ok(response);
-    }
-    
-    @GetMapping() // Devolver un producte entre 2 precios
-    public int getProducteBetweenPrices() {
-        return 0;
+        
     }
     
     @PostMapping() // Añadir un producte

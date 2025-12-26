@@ -16,14 +16,8 @@ public class CatalegService {
     @Autowired
     ProducteRepository producteRepository;
 
-    // Devolver todos los productos
-    public List<ProducteResponse> getAllProductes() {
-        return producteRepository.findAll().stream()
-                .map(ProducteResponse::new)
-                .collect(Collectors.toList());
-    }
-
-    public List<ProducteResponse> getProducteBetweenPrices(Double minPreu, Double maxPreu) {
+    // Devolver todos los productos, con posibilidad de filtro de precios
+    public List<ProducteResponse> getAllProductes(Double minPreu, Double maxPreu) {
         return producteRepository.filtrarPerPreu(minPreu, maxPreu).stream()
                 .map(ProducteResponse::new)
                 .collect(Collectors.toList());

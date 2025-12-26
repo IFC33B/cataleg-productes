@@ -1,6 +1,5 @@
 package ifc33b.dwesc.cataleg_productes.dto;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

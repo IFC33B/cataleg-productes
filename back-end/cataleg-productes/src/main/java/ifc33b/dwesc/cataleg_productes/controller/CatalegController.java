@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ifc33b.dwesc.cataleg_productes.dto.ProducteRequest;
 import ifc33b.dwesc.cataleg_productes.dto.ProducteResponse;
 import ifc33b.dwesc.cataleg_productes.service.CatalegService;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +42,7 @@ public class CatalegController {
     }
     
     @PostMapping() // Añadir un producte
-    public ResponseEntity<ProducteResponse> createProducte(@RequestBody ProducteRequest request) { 
+    public ResponseEntity<ProducteResponse> createProducte(@Valid @RequestBody ProducteRequest request) { 
         // Service
         ProducteResponse response = catalegService.createProducte(request);
 

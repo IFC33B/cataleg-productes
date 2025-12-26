@@ -8,9 +8,9 @@ public class ProducteResponse {
     // Atributos
     private Long id;
     private String nom;
-    private float preu;
+    private Double preu;
     private String imatgeUrl;
-    private int stock;
+    private Integer stock;
 
     // Constructor
     public ProducteResponse(Producte producte) {

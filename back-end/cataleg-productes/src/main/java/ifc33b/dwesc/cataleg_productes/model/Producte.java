@@ -7,6 +7,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Data;
 
 @Entity
@@ -23,21 +26,21 @@ public class Producte {
     private String nom;
 
     @Column(nullable = false)
-    @NotBlank(message = "Se requiere precio del producto")
-    private float preu;
+    @NotNull(message = "Se requiere un precio para el producto")
+    @Positive(message = "El precio debe ser positivo")
+    private Double preu;
 
-    @Column(nullable = false)
-    @NotBlank(message = "Se requiere una imagen del producto")
     private String imatgeUrl;
 
     @Column(nullable = false)
-    @NotBlank(message = "Se requiere stock del producto")
-    private int stock;
+    @NotNull(message = "Se requiere un stock del producto")
+    @PositiveOrZero(message = "El stock tiene que ser positivo o 0")
+    private Integer stock;
 
     // Constructor
     public Producte() {}
 
-    public Producte(String nom, float preu, String imatgeUrl, int stock) {
+    public Producte(String nom, Double preu, String imatgeUrl, Integer stock) {
         this.setNom(nom);
         this.setPreu(preu);
         this.setImatgeUrl(imatgeUrl);

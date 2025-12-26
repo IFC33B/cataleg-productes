@@ -29,7 +29,10 @@ public class CatalegController {
     private CatalegService catalegService;
     
     @GetMapping() // Devolver los productos, con posibilidad de filtro de precios
-    public ResponseEntity<List<ProducteResponse>> getAllProductes(@RequestParam(required = false) Double minPreu, Double maxPreu) {
+    public ResponseEntity<List<ProducteResponse>> getAllProductes(
+        @RequestParam(required = false) Double minPreu, 
+        @RequestParam(required = false) Double maxPreu) {
+            
         // Service
         List<ProducteResponse> response = catalegService.getAllProductes(maxPreu, minPreu);
 

@@ -34,7 +34,7 @@ public class CatalegController {
         @RequestParam(required = false) Double maxPreu) {
             
         // Service
-        List<ProducteResponse> response = catalegService.getAllProductes(maxPreu, minPreu);
+        List<ProducteResponse> response = catalegService.getAllProductes(minPreu, maxPreu);
 
         // HTTP Response
         return ResponseEntity.ok(response);

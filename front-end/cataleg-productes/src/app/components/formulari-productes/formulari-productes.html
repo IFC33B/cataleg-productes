@@ -29,70 +29,57 @@
 
         <h2 class="text-blue-400 text-xl font-bold mb-4">Agregar Producto</h2>
 
-        <form #formValidator="ngForm" (ngSubmit)="afegirProducte(formValidator)" class="space-y-6">
+        <form [formGroup]="producteForm" (ngSubmit)="afegirProducte()" class="space-y-6">
 
             <!-- Nombre -->
-            <div class="flex flex-col">
-                <label class="text-blue-400 font-medium mb-1">Nombre *</label>
-                <input type="text" name="nom" [(ngModel)]="nom" #nombreValidator="ngModel" required minlength="4"
-                    placeholder="Nombre del producto" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
-                    focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            <div>
+                <label class="text-blue-400">Nombre *</label>
+                <input type="text" formControlName="nom" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
 
-                <!-- Mensajes de error -->
-                @if (nombreValidator.invalid && (nombreValidator.touched || formValidator.submitted)) {
+                @if (producteForm.get('nom')?.invalid && producteForm.get('nom')?.touched) {
                 <p class="text-red-400 text-sm mt-1">
-                    @if (nombreValidator.errors?.['required']) { El nombre es obligatorio }
-                    @if (nombreValidator.errors?.['minlength']) { Mínimo 4 caracteres }
+                    @if (producteForm.get('nom')?.errors?.['required']) { El nombre es obligatorio }
+                    @if (producteForm.get('nom')?.errors?.['minlength']) { Mínimo 4 caracteres }
                 </p>
                 }
             </div>
 
             <!-- Precio -->
-            <div class="flex flex-col">
-                <label class="text-blue-400 font-medium mb-1">Precio *</label>
-                <input type="number" name="preu" [(ngModel)]="preu" #precioValidator="ngModel" required min="0.01"
-                    step="0.01" placeholder="Ej: 100.50" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
-                    focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-
-                <!-- Mensajes de error -->
-                @if (precioValidator.invalid && (precioValidator.touched || formValidator.submitted)) {
+            <div>
+                <label class="text-blue-400">Precio *</label>
+                <input type="number" formControlName="preu" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+                @if (producteForm.get('preu')?.invalid && producteForm.get('preu')?.touched)
+                {
                 <p class="text-red-400 text-sm mt-1">
-                    @if (precioValidator.errors?.['required']) { El precio es obligatorio }
-                    @if (precioValidator.errors?.['min']) { El precio debe ser positivo }
+                    @if (producteForm.get('preu')?.errors?.['required']) { El precio es obligatorio }
+                    @if (producteForm.get('preu')?.errors?.['min']) { El precio debe ser positivo }
                 </p>
                 }
             </div>
 
             <!-- Stock -->
-            <div class="flex flex-col">
-                <label class="text-blue-400 font-medium mb-1">Stock *</label>
-                <input type="number" name="stock" [(ngModel)]="stock" #stockValidator="ngModel" required min="0"
-                    step="1" placeholder="Ej: 10" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
-                    focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
-
-                <!-- Mensajes de error -->
-                @if (stockValidator.invalid && (stockValidator.touched || formValidator.submitted)) {
+            <div>
+                <label class="text-blue-400">Stock *</label>
+                <input type="number" formControlName="stock" class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
+                @if (producteForm.get('stock')?.invalid && producteForm.get('stock')?.touched) {
                 <p class="text-red-400 text-sm mt-1">
-                    @if (stockValidator.errors?.['required']) { El stock es obligatorio }
-                    @if (stockValidator.errors?.['min']) { El stock no puede ser negativo }
+                    @if (producteForm.get('stock')?.errors?.['required']) { El stock es obligatorio }
+                    @if (producteForm.get('stock')?.errors?.['min']) { El stock no puede ser negativo }
                 </p>
                 }
             </div>
 
             <!-- Imagen (opcional) -->
-            <div class="flex flex-col">
-                <label class="text-blue-400 font-medium mb-1">Imagen (opcional)</label>
-                <input type="text" name="imatgeUrl" [(ngModel)]="imatgeUrl" placeholder="URL de la imagen" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
-                    focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            <div>
+                <label class="text-blue-400">Imagen (opcional)</label>
+                <input type="text" formControlName="imatgeUrl"
+                    class="bg-gray-800 text-blue-300 rounded px-3 py-2 w-full">
             </div>
 
-            <!-- Botón -->
-            <div class="col-span-full flex justify-end mt-4">
-                <button type="submit" [disabled]="formValidator.invalid" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold
-                     px-6 py-2 rounded-lg transition-colors duration-200">
-                    Agregar
-                </button>
-            </div>
+            <button type="submit" [disabled]="producteForm.invalid"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded mt-4">
+                Agregar
+            </button>
 
         </form>
     </div>

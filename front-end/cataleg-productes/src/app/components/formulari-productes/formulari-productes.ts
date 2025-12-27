@@ -2,10 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { ProducteService } from '../../services/producte.service';
 import { ProducteRequest } from '../../models';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-formulari-productes',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './formulari-productes.html',
   styleUrl: './formulari-productes.css',
 })

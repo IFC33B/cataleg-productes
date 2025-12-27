@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Producte } from '../models';
+import { Producte, ProducteRequest } from '../models';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +14,14 @@ export class ProducteService {
   // Obtener todos los productos
   getAllProductes(): Observable<Producte> {
     return this.http.get<Producte>(this.apiURL)
+      .pipe(
+        catchError(this.handleError)
+      )
+  }
+
+  // Crear productos
+  createProducte(request: ProducteRequest) {
+    return this.http.post<Producte>(this.apiURL, request)
       .pipe(
         catchError(this.handleError)
       )

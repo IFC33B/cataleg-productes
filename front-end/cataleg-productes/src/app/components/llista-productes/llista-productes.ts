@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { Producte } from '../../models';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ProducteService } from '../../services/producte.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-llista-productes',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './llista-productes.html',
   styleUrl: './llista-productes.css',
 })
@@ -29,7 +30,7 @@ export class LlistaProductes {
     this.error.set(null);
 
     // Service
-    this.producteService.getAllProductes().subscribe({
+    this.producteService.getAllProductes(this.minPreu, this.maxPreu).subscribe({
       next: (data) => {
         this.productes.set(data);
         this.carregant.set(false);

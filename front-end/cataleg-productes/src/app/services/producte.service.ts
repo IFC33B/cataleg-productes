@@ -15,10 +15,10 @@ export class ProducteService {
   getAllProductes(minPreu?: number, maxPreu?: number): Observable<Producte[]> {
     let params = new HttpParams();
 
-    if (minPreu !== undefined) {
+    if (minPreu != null) {
       params = params.set('minPreu', minPreu)
     }
-    if (maxPreu !== undefined) {
+    if (maxPreu != null) {
       params = params.set('maxPreu', maxPreu)
     }
 

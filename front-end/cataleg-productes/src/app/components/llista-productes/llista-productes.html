@@ -1,0 +1,116 @@
+<section class="p-6 bg-gray-900 h-full overflow-y-auto">
+    <h1 class="text-3xl font-bold mb-20 text-center text-white">Catálogo de productos</h1>
+
+    <!-- Indicador de carga -->
+    @if (carregant()) {
+    <section class="flex flex-col items-center py-8">
+        <div class="animate-spin rounded-full h-12 w-12 border-4 border-blue-400 border-t-blue-600 mb-3"></div>
+        <span class="text-gray-400 text-lg">Cargando productos...</span>
+    </section>
+    }
+
+    <!-- Mensaje de error -->
+    @if (error()) {
+    <section class="bg-red-900 text-red-400 text-center shadow-lg rounded-2xl p-6 mb-8 border border-red-700">
+        <p class="mb-3 font-semibold text-lg">{{ error()?.message }}</p>
+        <button
+            class="px-5 py-2 border border-red-400 text-red-400 rounded-full hover:bg-red-400 hover:text-black transition-all duration-300 shadow-md"
+            (click)="carregarProductes()">
+            Volver a intentar
+        </button>
+    </section>
+    }
+
+    <!-- Lista de productos -->
+    @if (!carregant() && !error()) {
+
+    <section class="bg-gray-900 p-6 mb-8">
+
+        <div class="grid gap-4 md:grid-cols-2">
+
+            <!-- Precio mínimo -->
+            <div class="flex flex-col">
+                <label class="text-blue-400 font-medium mb-1">
+                    Precio mínimo
+                </label>
+                <input type="number" [(ngModel)]="minPreu" placeholder="Ej: 100" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
+               focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            </div>
+
+            <!-- Precio máximo -->
+            <div class="flex flex-col">
+                <label class="text-blue-400 font-medium mb-1">
+                    Precio máximo
+                </label>
+                <input type="number" [(ngModel)]="maxPreu" placeholder="Ej: 500" class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-blue-300
+               focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+            </div>
+
+        </div>
+
+        <!-- Botón -->
+        <div class="flex justify-end mt-6">
+            <button (click)="carregarProductes()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold
+             px-6 py-2 rounded-lg transition-colors duration-200">
+                Filtrar
+            </button>
+        </div>
+
+    </section>
+
+    <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+        @if (productes()?.length === 0) {
+
+        <!-- No hay productos -->
+        <div class="col-span-full py-12">
+            <h1 class="text-center text-blue-400 text-3xl font-semibold">
+                No hay productos en el catálogo. Por favor, agrega alguno en el formulario!
+            </h1>
+        </div>
+
+        } @else {
+
+        <!-- Tarjetas de productos -->
+        @for (producte of productes(); track producte.id) {
+
+        <div class="bg-gray-900 rounded-xl shadow-lg shadow-black/50 overflow-hidden flex flex-col h-full">
+
+            <div class="p-6 flex flex-col">
+
+                <!-- Badges -->
+                <div class="flex justify-between mb-4">
+                    <span class="bg-blue-900 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
+                        ID #{{ producte.id }}
+                    </span>
+
+                    <span class="bg-blue-800 text-blue-300 px-3 py-1 rounded-full text-sm font-medium">
+                        Stock: {{ producte.stock }}
+                    </span>
+                </div>
+
+                <!-- Título -->
+                <h5 class="text-center text-blue-400 font-bold text-2xl mb-2">
+                    {{ producte.nom }}
+                </h5>
+
+                <!-- Precio -->
+                <p class="text-center text-green-300 text-xl mb-4">
+                    {{ producte.preu }} €
+                </p>
+
+                <!-- Imagen -->
+                @if (producte.imatgeUrl) {
+                <img [src]="producte.imatgeUrl" alt="Imagen del producto"
+                    class="rounded-lg object-cover h-48 w-full mt-auto">
+                }
+
+            </div>
+        </div>
+
+        }
+        }
+    </section>
+    }
+
+</section>

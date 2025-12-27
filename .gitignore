@@ -1,0 +1,106 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http:/www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+.vscode
+
+# Frontend
+
+# Compiled output
+/front-end/cataleg-productes/dist
+/front-end/cataleg-productes/tmp
+/front-end/cataleg-productes/out-tsc
+/front-end/cataleg-productes/bazel-out
+
+# Node
+/front-end/cataleg-productes/node_modules
+/front-end/cataleg-productes/npm-debug.log
+/front-end/cataleg-productes/yarn-error.log
+
+# IDEs and editors
+/front-end/cataleg-productes/.idea/
+/front-end/cataleg-productes/.project
+/front-end/cataleg-productes/.classpath
+/front-end/cataleg-productes/.c9/
+/front-end/cataleg-productes/*.launch
+/front-end/cataleg-productes/.settings/
+/front-end/cataleg-productes/*.sublime-workspace
+
+# Visual Studio Code
+/front-end/cataleg-productes/.vscode/*
+/front-end/cataleg-productes/!.vscode/settings.json
+/front-end/cataleg-productes/!.vscode/tasks.json
+/front-end/cataleg-productes/!.vscode/launch.json
+/front-end/cataleg-productes/!.vscode/extensions.json
+/front-end/cataleg-productes/.history/*
+
+# Miscellaneous
+/front-end/cataleg-productes/.angular/cache
+/front-end/cataleg-productes/.sass-cache/
+/front-end/cataleg-productes/connect.lock
+/front-end/cataleg-productes/coverage
+/front-end/cataleg-productes/libpeerconnection.log
+/front-end/cataleg-productes/testem.log
+/front-end/cataleg-productes/typings
+/front-end/cataleg-productes/__screenshots__/
+
+# System files
+/front-end/cataleg-productes/.DS_Store
+/front-end/cataleg-productes/Thumbs.db
+
+# Backend
+
+/back-end/cataleg-productes/HELP.md
+/back-end/cataleg-productes/target/
+/back-end/cataleg-productes/.mvn/wrapper/maven-wrapper.jar
+/back-end/cataleg-productes/!**/src/main/**/target/
+/back-end/cataleg-productes/!**/src/test/**/target/
+
+### STS ###
+/back-end/cataleg-productes/.apt_generated
+/back-end/cataleg-productes/.classpath
+/back-end/cataleg-productes/.factorypath
+/back-end/cataleg-productes/.project
+/back-end/cataleg-productes/.settings
+/back-end/cataleg-productes/.springBeans
+/back-end/cataleg-productes/.sts4-cache
+
+### IntelliJ IDEA ###
+/back-end/cataleg-productes/.idea
+/back-end/cataleg-productes/*.iws
+/back-end/cataleg-productes/*.iml
+/back-end/cataleg-productes/*.ipr
+
+### NetBeans ###
+/back-end/cataleg-productes/nbproject/private/
+/back-end/cataleg-productes/nbbuild/
+/back-end/cataleg-productes/dist/
+/back-end/cataleg-productes/nbdist/
+/back-end/cataleg-productes/.nb-gradle/
+/back-end/cataleg-productes/build/
+/back-end/cataleg-productes/!**/src/main/**/build/
+/back-end/cataleg-productes/!**/src/test/**/build/
+
+### VS Code ###
+/back-end/cataleg-productes/.vscode/
